@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Diagnosis of Chronic Lung Disease</title>
+   
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Patua+One&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+  </head>
+  <body>
+    <div class="container-fluid px-1 py-5 mx-auto">
+      <div class="row d-flex justify-content-center">
+          <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+              <div class="card text-center">
+                <h2 class="text-center" style="font-family: 'Patua One', cursive;">Diagnois of Chronic Lung Disease</h2>&nbsp;
+                <h2 class={{color}} style="font-family: 'Patua One', cursive;">{{prediction_text}}</h2>&nbsp;
+               
+                  <form class="form-group" action="{{ url_for('predict')}}" method="post">
+                      <div class="row justify-content-between text-left">
+                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">First name<span class="text-danger"> *</span></label> <input class="form-control" type="text" placeholder="Enter patient's first name"> </div>
+                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Last name<span class="text-danger"> *</span></label> <input  class="form-control" type="text" placeholder="Enter patient's last name" > </div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Email Address</label> <input  class="form-control" type="email" placeholder="" > </div>
+                          <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Phone number</label> <input  class="form-control" type="number" placeholder="" > </div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Gender<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="GENDER" id="GENDER"><option value=0>Female</option> <option value=1>Male</option> </select></div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">Age<span class="text-danger"> *</span></label> <input  class="form-control" type="number" min="1" max="100" id="AGE" name="AGE" placeholder="" required > </div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">SMOKING<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="SMOKING" id="SMOKING"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">YELLOW FINGERS<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="YELLOW FINGERS" id="YELLOW FINGERS"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">ANXITEY<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="ANXITEY" id="ANXITEY"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">PEER PRESSURE<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="PEER PRESSURE" id="PEER PRESSURE"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">CHRONIC DISEASE<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="CHRONIC DISEASE" id="CHRONIC DISEASE"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">FATIGUE<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="FATIGUE" id="FATIGUE"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">ALLERGY<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="ALLERGY" id="ALLERGY"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">WHEEZING<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="WHEEZING" id="WHEEZING"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">ALCOHOL CONSUMING<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="ALCOHOL CONSUMING" id="ALCOHOL CONSUMING"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">COUGHING<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="COUGHING" id="COUGHING"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">SHORTNESS OF BREATH<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="SHORTNESS OF BREATH" id="SHORTNESS OF BREATH"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">SWALLOWING DIFFICULTY<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="SWALLOWING DIFFICULTY" id="SWALLOWING DIFFICULTY"><option value=2>Yes</option> <option value=1>No</option> </select></div>
+                      </div>
+
+                      <div class="row justify-content-between text-left">
+                        <div class="form-group col-sm-6 flex-column d-flex"> <label class="form-control-label px-3">CHEST PAIN<span class="text-danger"> *</span></label> <select class="form-control mt-2" name="CHEST PAIN" id="CHEST PAIN"><option value=1>Yes</option> <option value=2>No</option> </select></div>
+                      </div>
+
+                      <div class="row justify-content-end">
+                          <div class="form-group col-sm-6"> <button  class="btn btn-primary" type="submit" >Diagnose</button> </div>
+                      </div>
+
+                    </form>
+              </div>
+          </div>
+      </div>
+  </div>
+  </body>
+    
+</html>
